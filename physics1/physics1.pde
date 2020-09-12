@@ -6,7 +6,7 @@ void setup(){
   for(int i=0;i<objs.length;i++){
     Particle p= new Particle("soccerBall.png",random(width),height/2);
     p.setMass(random(2,7));
-    p.resizeSprite(0.09,0.09);
+    p.resizeSprite(0.09*map(p.mass,0,7,0.5,1),0.09*map(p.mass,0,7,0.3,1));
     objs[i]= p;
   }
 }
@@ -14,8 +14,16 @@ void setup(){
 void draw(){
  background(255);
  
- PVector gravity = new PVector(0,0.4);
  for(Particle p : objs){
+   
+   PVector gravity = new PVector(0,0.4);
+   gravity.mult(p.mass);
+   
+   if(mousePressed){
+     PVector wind = new PVector(0.5,0);
+     p.applyForce(wind);
+   }
+   
    p.applyForce(gravity);
    p.update();
    p.edges();
