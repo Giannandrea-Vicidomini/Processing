@@ -1,10 +1,13 @@
 Ball ball;
+
+
 float time;
 void setup(){
   time = 0;
   size(600,600);
   frameRate(30);
-  ball= new Ball(width/2,height/2);
+  ball= new Ball("ball.png",width/2,height/2);
+  ball.resizeSprite(0.20,0.20);
 }
 
 void draw(){
@@ -39,4 +42,5 @@ void draw(){
   ball.update();
   ball.edges();
   ball.show();
+  
 }
