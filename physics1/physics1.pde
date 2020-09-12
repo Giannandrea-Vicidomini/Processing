@@ -6,7 +6,7 @@ void setup(){
   for(int i=0;i<objs.length;i++){
     Particle p= new Particle("soccerBall.png",random(width),height/2);
     p.setMass(random(2,7));
-    p.resizeSprite(0.09*map(p.mass,0,7,0.5,1),0.09*map(p.mass,0,7,0.3,1));
+    p.resizeSprite(0.09*map(p.mass,0,7,0.5,1.5),0.09*map(p.mass,0,7,0.3,1.5));
     objs[i]= p;
   }
 }
