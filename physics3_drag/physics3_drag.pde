@@ -5,7 +5,7 @@ float drag;
 void setup(){
   size(600,600);
   frameRate(60);
-  drag = 0.1;
+  drag = 0.09;
   water = new Fluid(0,height/2,width,height/2,drag);
   
   float dist = width/10;
