@@ -11,7 +11,7 @@ void setup(){
   ps = new Particle[10];
   for(int i = 0; i <10;i++){
     Particle temp = new Particle(pos,20);
-    temp.setMass(random(1,8));
+    temp.setMass(random(1.2,8));
     //temp.setMass(3);
     ps[i] = temp;
     pos+=dist;
