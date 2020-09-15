@@ -1,10 +1,12 @@
 Particle[] ps;
 Particle p;
 Fluid water;
+float drag;
 void setup(){
   size(600,600);
-  frameRate(30);
-  water = new Fluid(0,height/2,width,height/2,0.1);
+  frameRate(60);
+  drag = 0.1;
+  water = new Fluid(0,height/2,width,height/2,drag);
   
   float dist = width/10;
   float pos = dist/2;
@@ -27,8 +29,8 @@ void draw(){
   
   
   for(Particle p : ps){
-    
-    PVector grav = new PVector(0,1);
+    //float m = drag*p.mass;
+    PVector grav = new PVector(0,0.3);
     grav.mult(p.mass);
     p.applyForce(grav);
     
@@ -36,6 +38,10 @@ void draw(){
     if(water.contains(p)){
       PVector drag = water.drag(p);
       p.applyForce(drag);
+    }
+    
+    if(p.mass<=12){
+      println(p.velocity);
     }
     
     
