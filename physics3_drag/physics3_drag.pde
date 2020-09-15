@@ -44,6 +44,17 @@ void draw(){
     p.show();
   }
   
-
   
+}
+
+void mousePressed(){
+  PVector center = new PVector(width/2,height/2);
+  PVector mouse = new PVector(mouseX,mouseY);
+  PVector force = PVector.sub(mouse,center);
+  //print(force.mag());
+  force.setMag(60);
+  for(Particle p :ps){
+    p.applyForce(force);
+  }
+    
 }
