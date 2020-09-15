@@ -84,7 +84,10 @@ class Particle{
   }
   
   public PVector getVelocityOpposite(){
-    return PVector.mult(velocity,-1);
+    PVector friction = velocity.copy();
+    friction.normalize();
+    friction.mult(-1);
+    return friction; 
   }
   
 }

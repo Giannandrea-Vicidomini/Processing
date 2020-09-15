@@ -16,6 +16,7 @@ void draw(){
   
   if(detectMudCollision()){
     PVector friction = p.getVelocityOpposite();
+    print("("+p.velocity.x+","+p.velocity.y+")\n");
     friction.mult(0.1);
     p.applyForce(friction);
   }
