@@ -6,6 +6,7 @@ void setup(){
   frameRate(30);
   particles = new ArrayList<Particle>();
   atc = new Attractor(width/2,height/2,50);
+  setupParticles();
 }
 
 void draw(){
@@ -29,7 +30,27 @@ void draw(){
 }
 
 void mousePressed(){
-  Particle p = new Particle(mouseX,mouseY);
-  p.setMass(random(2,6));
+  Particle p = new Particle(mouseX,mouseY,random(2,6));
+  
   particles.add(p);
+}
+
+void setupParticles(){
+  int num =round(random(10,29));
+  float offset = 360/num;
+  float increment = 0;
+  
+  for(int i = 0;i<num;i++){
+    
+    float posx = cos(radians(increment))*420 +atc.position.x;
+    float posy = sin(radians(increment))*420 +atc.position.y;
+    PVector pos = new PVector(posx,posy);
+    PVector toAttractor = (PVector.sub(atc.position,pos)).setMag(random(-96,96));
+    pos.add(toAttractor);
+    Particle p = new Particle(pos.x,pos.y,random(2,6));
+    particles.add(p);
+    
+    increment+=offset;
+  }
+  
 }

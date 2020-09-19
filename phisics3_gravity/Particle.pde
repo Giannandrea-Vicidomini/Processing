@@ -7,15 +7,16 @@ class Particle{
   private float originalWidth;
   private float originalHeight;
   
-  public Particle(float x,float y){
+  public Particle(float x,float y,float mass){
     position = new PVector(x,y);
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
-    mass = 1;
+    this.mass = mass;
+    
   }
   
-  public Particle(String path, float x, float y){
-    this(x,y);
+  public Particle(String path, float x, float y,float mass){
+    this(x,y,mass);
     sprite = loadImage(path);
     originalWidth = sprite.width;
     originalHeight = sprite.height;
@@ -57,7 +58,7 @@ class Particle{
       stroke(255);
       fill(255,0,255);
       ellipseMode(CENTER);
-      ellipse(position.x,position.y,50,50);
+      ellipse(position.x,position.y,10*mass,10*mass);
     }
     else{
       imageMode(CENTER);
