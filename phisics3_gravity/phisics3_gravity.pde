@@ -3,6 +3,7 @@ Attractor atc;
 
 void setup(){
   size(1080,720);
+  frameRate(30);
   particles = new ArrayList<Particle>();
   atc = new Attractor(width/2,height/2,50);
 }
@@ -16,6 +17,10 @@ void draw(){
     
     atc.attract(p);
     
+    
+    float velocity = p.velocity.mag();
+    PVector airDrag = p.getVelocityOpposite().mult(velocity*velocity*0.05);
+    p.applyForce(airDrag);
     
     p.visualize();
   }
