@@ -48,6 +48,8 @@ void setupParticles(){
     PVector toAttractor = (PVector.sub(atc.position,pos)).setMag(random(-96,96));
     pos.add(toAttractor);
     Particle p = new Particle(pos.x,pos.y,random(2,6));
+    PVector force = new PVector(random(0,50),random(0,50));
+    p.applyForce(force);
     particles.add(p);
     
     increment+=offset;
