@@ -119,6 +119,10 @@ class Particle{
     return friction; 
   }
   
+  public PVector getDragVector(float dragCoefficient){
+    PVector f = getVelocityOpposite().mult(velocity.magSq()).mult(dragCoefficient);
+    return f;
+  }
   
   
 }

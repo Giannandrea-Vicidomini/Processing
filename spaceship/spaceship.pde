@@ -21,7 +21,7 @@ void draw(){
   for(Particle star : stars){
     star.visualize(color(255,255,255,random(10,255)));
   }
-  
+  ship.applyForce(ship.getDragVector(0.04));
   ship.visualize(0);
 }
 
