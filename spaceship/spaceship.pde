@@ -21,26 +21,30 @@ void draw(){
   for(Particle star : stars){
     star.visualize(color(255,255,255,random(10,255)));
   }
-  ship.applyForce(ship.getDragVector(0.04));
+  ship.applyForce(ship.getDragVector(0.07));
   ship.visualize(0);
+  
+  if(keyPressed){
+    handleInput();
+  }
 }
 
-void keyPressed(){
-   if (keyCode == LEFT)
+void handleInput(){
+   if ((key == CODED) && (keyCode == LEFT))
     {
-      ship.angle-=0.21;
+      ship.angle-=0.081;
       //ship.applyTorque(-0.11);
       //ship.aVelocity-=0.1;
     }
-    if(keyCode == RIGHT)
+    if(key == CODED && keyCode == RIGHT)
     {
-      ship.angle+=0.21;
+      ship.angle+=0.081;
       //ship.applyTorque(0.11);
       //ship.aVelocity+=0.1;
     }
     if(key == 32){
       float angle = ship.angle-PI/2;
-      PVector force = new PVector(cos(angle),sin(angle)).setMag(30);
+      PVector force = new PVector(cos(angle),sin(angle)).setMag(17);
       ship.applyForce(force);
     }
 }
