@@ -14,3 +14,12 @@ void draw(){
   emitter.emit();
   
 }
+
+void mousePressed(){
+  if(emitter.emitting == false){
+    emitter.emitting=true;
+  }else{
+    emitter.emitting=false;
+  }
+  
+}

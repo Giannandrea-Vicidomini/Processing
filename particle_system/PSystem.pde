@@ -53,14 +53,15 @@ class PSystem{
       else{
         newP = new Particle(imagePath,emitterPos.x,emitterPos.y,1,lspan);
       }
+    
       
       PVector yeet = randomDirection();
       yeet.mult(emissionForce*random(emissionOffset/2,emissionOffset));
        
       newP.applyForce(yeet);
       particles.add(newP);
-        
-      for(Particle p : particles){
+    }
+    for(Particle p : particles){
         PVector gravity = new PVector(0,1);
         gravity.mult(p.mass);
         
@@ -72,19 +73,17 @@ class PSystem{
         
         p.update();
         p.show(color(0,190,220,l));
-      }
+    }
       
-      for(int i = 0 ; i<particles.size();i++){
+    for(int i = 0 ; i<particles.size();i++){
         Particle curr = particles.get(i);
         
         if(curr.isDead()){
           particles.remove(i);
           i--;
-        }
-      }
-      
-      
-     }
+       }
+    }
+       
   }
   
   
