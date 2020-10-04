@@ -1,20 +1,30 @@
 class PSystem{
-  private PVector emitter;
+  private PVector emitterPos;
   private ArrayList<Particle> particles;
   private int pLife;
   private int perturbation;
   private boolean emitting = true;
   private float emissionForce;
-  private int coneWidth = 20;
+  private float emissionOffset;
+  private int coneWidth;
+  private String imagePath;
   
-  public PSystem(float x,float y,float force,int life,int lifeOffset){
+  public PSystem(float x,float y,float force,float forceOffset,int life,int lifeOffset,int coneWidth){
+    this.coneWidth = coneWidth;
+    emissionOffset = forceOffset;
     emissionForce = force;
-    emitter = new PVector(x,y);
+    emitterPos = new PVector(x,y);
     particles = new ArrayList<Particle>();
    
     pLife = life;
     perturbation = lifeOffset;
     
+    
+  }
+  
+  public PSystem(String path,float x,float y,float force,float forceOffset,int life,int lifeOffset,int coneWidth){
+    this(x,y,force,forceOffset,life,lifeOffset,coneWidth);
+    imagePath = path;
     
   }
   
@@ -33,10 +43,19 @@ class PSystem{
   
   void emit(){
     if(emitting){
+      
       int lspan =(int) (pLife + random(-perturbation, perturbation));
-      Particle newP = new Particle(emitter.x,emitter.y,1,lspan);
+      
+      Particle newP = null;
+      if(imagePath == null){
+        newP = new Particle(emitterPos.x,emitterPos.y,1,lspan);
+      }
+      else{
+        newP = new Particle(imagePath,emitterPos.x,emitterPos.y,1,lspan);
+      }
+      
       PVector yeet = randomDirection();
-      yeet.mult(emissionForce);
+      yeet.mult(emissionForce*random(emissionOffset/2,emissionOffset));
        
       newP.applyForce(yeet);
       particles.add(newP);
