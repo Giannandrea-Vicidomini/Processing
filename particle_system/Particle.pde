@@ -32,7 +32,7 @@ class Particle{
   }
   
   public boolean isDead(){
-    return this.lifespan==0;
+    return this.lifespan<=0;
   }
   
   public void update(){

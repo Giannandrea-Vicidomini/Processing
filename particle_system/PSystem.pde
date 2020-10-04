@@ -73,6 +73,17 @@ class PSystem{
         p.update();
         p.show(color(0,190,220,l));
       }
+      
+      for(int i = 0 ; i<particles.size();i++){
+        Particle curr = particles.get(i);
+        
+        if(curr.isDead()){
+          particles.remove(i);
+          i--;
+        }
+      }
+      
+      
      }
   }
   
