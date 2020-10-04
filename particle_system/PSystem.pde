@@ -64,6 +64,7 @@ class PSystem{
    
       
     for(int i = 0 ; i<particles.size();i++){
+        
         Particle p = particles.get(i);
         PVector gravity = new PVector(0,1);
         gravity.mult(p.mass);
@@ -81,6 +82,7 @@ class PSystem{
           particles.remove(i);
           i--;
        }
+       //println("Particles:"+ particles.size());
     }
        
   }
