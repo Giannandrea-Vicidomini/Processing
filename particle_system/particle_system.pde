@@ -4,6 +4,7 @@ void setup(){
   frameRate(60);
   size(600,600);
   emitter = new PSystem(width/2,height/2,10,1.25,40,15,30);
+  emitter.emitting = false;
   
 }
 
@@ -22,4 +23,12 @@ void mousePressed(){
     emitter.emitting=false;
   }
   
+}
+
+void mouseReleased(){
+  if(emitter.emitting == false){
+    emitter.emitting=true;
+  }else{
+    emitter.emitting=false;
+  }
 }
