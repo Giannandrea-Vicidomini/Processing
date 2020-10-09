@@ -6,7 +6,7 @@ void setup(){
   img.resize((int)(img.width*0.009),(int)(img.height*0.009));
   
   frameRate(60);
-  size(600,600);
+  size(600,600,P2D);
   emitter = new PSystem(width/2,height/2,9,1.30,30);
   emitter.emitting = false;
   
@@ -23,7 +23,7 @@ void draw(){
   
   
   emitter.generateParticle(p);
-  emitter.gravity(1);
+  //emitter.gravity(1);
   if(keyPressed){
     if(key == 32){
       emitter.applyForce(new PVector(1,0));
