@@ -18,7 +18,7 @@ void draw(){
   //SpriteParticle p = new SpriteParticle("star.png",emitter.emitterPos.x,emitter.emitterPos.y,1,30);
   //p.resizeSprite(0.003,0.003);
   emitter.generateParticle(p);
-  emitter.applyForce(new PVector(0,1));
+  emitter.gravity(1);
   if(keyPressed){
     if(key == 32){
       emitter.applyForce(new PVector(1,0));

@@ -42,10 +42,18 @@ class PSystem{
    
   }
   
+  void gravity(float strength){
+    for(Particle p : particles){
+        PVector grav = new PVector(0,strength);
+        grav.mult(p.mass);
+        p.applyForce(grav);
+    }
+  }
+  
   void applyForce(PVector force){
     for(Particle p : particles){
        
-        p.applyForce(PVector.mult(force,p.mass));
+        p.applyForce(force);
     }
     
   }
