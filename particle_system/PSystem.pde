@@ -42,16 +42,19 @@ class PSystem{
    
   }
   
+  void applyForce(PVector force){
+    for(Particle p : particles){
+       
+        p.applyForce(PVector.mult(force,p.mass));
+    }
+    
+  }
+  
   void emit(){
       
     for(int i = 0 ; i<particles.size();i++){
         
         Particle p = particles.get(i);
-        PVector gravity = new PVector(0,1);
-        gravity.mult(p.mass);
-        
-        
-        p.applyForce(gravity);
         
         //println("current ="+p.currentLife);
         //println("total ="+p.lifespan);
