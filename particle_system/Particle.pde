@@ -3,13 +3,11 @@ class Particle{
   private PVector velocity;
   private PVector acceleration;
   private float mass;
-  private PImage sprite;
-  private float originalWidth;
-  private float originalHeight;
   private float angle;
   private float aVelocity;
   private float aAcc;
   private int lifespan;
+  private int currentLife;
   
   public Particle(float x,float y,float mass,int lifespan){
     position = new PVector(x,y);
@@ -20,23 +18,29 @@ class Particle{
     aAcc = 0;
     this.mass = mass;
     this.lifespan = lifespan;
+    this.currentLife = this.lifespan;
     
   }
   
-  public Particle(String path, float x, float y,float mass,int lifespan){
-    this(x,y,mass,lifespan);
-    sprite = loadImage(path);
-    originalWidth = sprite.width;
-    originalHeight = sprite.height;
+  public Particle(PVector pos,float mass,int lifespan){
+    position = pos;
+    velocity = new PVector(0,0);
+    acceleration = new PVector(0,0);
+    angle = 0;
+    aVelocity = 0;
+    aAcc = 0;
+    this.mass = mass;
+    this.lifespan = lifespan;
+    this.currentLife = this.lifespan;
     
   }
   
   public boolean isDead(){
-    return this.lifespan<=0;
+    return this.currentLife<=0;
   }
   
   public void update(){
-    lifespan-=1;
+    currentLife-=1;
     velocity.add(acceleration);
     position.add(velocity);
     acceleration.mult(0);
@@ -76,18 +80,14 @@ class Particle{
     translate(position.x,position.y);
     
     rotate(angle);
-    if(sprite == null){
+ 
       
-      //stroke(255);
-      noStroke();
-      fill(c);
-      ellipseMode(CENTER);
-      ellipse(0,0,10*mass,10*mass);
-    }
-    else{
-      imageMode(CENTER);
-      image(sprite,0,0);
-    }
+    //stroke(255);
+    noStroke();
+    fill(c);
+    ellipseMode(CENTER);
+    ellipse(0,0,10*mass,10*mass);
+    
     pop();
   }
   
@@ -110,13 +110,6 @@ class Particle{
     mass = newMass;
   }
   
-  public int resizeSprite(float wPercentage, float hPercentage){
-    if(sprite!=null){
-      sprite.resize(int(originalWidth*wPercentage),int(originalHeight*hPercentage));
-      return 1;
-    }
-    return 0;
-  }
   
   public PVector getVelocityOpposite(){
     PVector friction = velocity.copy();
@@ -130,5 +123,40 @@ class Particle{
     return f;
   }
   
+  
+}
+
+class SpriteParticle extends Particle{
+  PImage sprite;
+  private float originalWidth;
+  private float originalHeight;
+  
+  public SpriteParticle(String path, float x, float y,float mass,int lifespan){
+    super(x,y,mass,lifespan);
+    sprite = loadImage(path);
+    originalWidth = sprite.width;
+    originalHeight = sprite.height;
+  }
+  
+  public int resizeSprite(float wPercentage, float hPercentage){
+    if(sprite!=null){
+      sprite.resize(int(originalWidth*wPercentage),int(originalHeight*hPercentage));
+      return 1;
+    }
+    return 0;
+  }
+  
+  public void show(color c){
+    
+      push();
+      translate(super.position.x,super.position.y);
+    
+      rotate(super.angle);
+      
+      imageMode(CENTER);
+      image(sprite,0,0);
+      
+      pop();
+  }
   
 }
