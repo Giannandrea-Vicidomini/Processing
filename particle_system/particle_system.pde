@@ -1,6 +1,10 @@
-
+PImage img;
 PSystem emitter;
+
 void setup(){
+  img = loadImage("star.png");
+  img.resize((int)(img.width*0.009),(int)(img.height*0.009));
+  
   frameRate(60);
   size(600,600);
   emitter = new PSystem(width/2,height/2,9,1.30,30);
@@ -13,10 +17,11 @@ void draw(){
   //emitter.coneWidth = (int)map(mouseX,0,width,0,40);
   
   emitter.emitterPos = new PVector(mouseX,mouseY);
-  Particle p = new Particle(emitter.emitterPos.copy(),1,50);
+  //Particle p = new Particle(emitter.emitterPos.copy(),1,50);
   
-  //SpriteParticle p = new SpriteParticle("star.png",emitter.emitterPos.x,emitter.emitterPos.y,1,30);
-  //p.resizeSprite(0.003,0.003);
+  SpriteParticle p = new SpriteParticle(img,emitter.emitterPos.x,emitter.emitterPos.y,1,30);
+  
+  
   emitter.generateParticle(p);
   emitter.gravity(1);
   if(keyPressed){

@@ -131,19 +131,17 @@ class SpriteParticle extends Particle{
   private float originalWidth;
   private float originalHeight;
   
-  public SpriteParticle(String path, float x, float y,float mass,int lifespan){
+  public SpriteParticle(PImage img, float x, float y,float mass,int lifespan){
     super(x,y,mass,lifespan);
-    sprite = loadImage(path);
-    originalWidth = sprite.width;
-    originalHeight = sprite.height;
+    sprite = img;
+    originalWidth = img.width;
+    originalHeight = img.height;
   }
   
-  public int resizeSprite(float wPercentage, float hPercentage){
-    if(sprite!=null){
-      sprite.resize(int(originalWidth*wPercentage),int(originalHeight*hPercentage));
-      return 1;
-    }
-    return 0;
+  public void resizeSprite(float wPercentage, float hPercentage){
+    println(originalWidth);
+    sprite.resize(int(originalWidth*wPercentage),int(originalHeight*hPercentage));
+     
   }
   
   public void show(color c){
